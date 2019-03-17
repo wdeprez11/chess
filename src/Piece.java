@@ -4,30 +4,25 @@ public class Piece {
 
         private String value;
 
-        public String getValue()
-        {
+        public String getValue() {
             return this.value;
         }
 
-        private Color(String value)
-        {
+        private Color(String value) {
             this.value = value;
         }
     }
 
-    enum Type
-    {
+    enum Type {
         KING("K"), QUEEN("Q"), ROOK("R"), BISHOP("B"), KNIGHT("H"), PAWN("P");
 
         private String value;
 
-        public String getValue()
-        {
+        public String getValue() {
             return this.value;
         }
 
-        private Type(String value)
-        {
+        private Type(String value) {
             this.value = value;
         }
     }
@@ -55,7 +50,7 @@ public class Piece {
 
     @Override
     public String toString() {
-   //     return "Piece{" + "type=" + type + ", color=" + color + '}';
+        //     return "Piece{" + "type=" + type + ", color=" + color + '}';
         return color.getValue() + type.getValue();
     }
 }

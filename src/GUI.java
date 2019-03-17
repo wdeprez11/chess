@@ -25,25 +25,13 @@ public class GUI extends JPanel {
         g.fillRect(spaceSize / 2, spaceSize / 2, boardSize, boardSize);
         for (int i = 0, x = offset, y = offset; i < 8; i++, y += spaceSize) {
             for (int j = 0; j < 8; j++, x += 40) {
-                if (i % 2 == 0) {
-                    if (j % 2 == 0) {
-                        g.setColor(color1);
-                    } else {
-                        g.setColor(color2);
-                    }
-                } else {
-                    if (j % 2 == 1) {
-                        g.setColor(color1);
-                    } else {
-                        g.setColor(color2);
-                    }
-
-                }
+                g.setColor((i % 2 == 0) ? ((j % 2 == 0) ? color1 : color2) : ((j % 2 == 1) ? color1 : color2));
                 g.fillRect(x, y, spaceSize, spaceSize);
             }
             x = 30;
         }
     }
+
 
     private void drawPieces(Graphics g) {
 
