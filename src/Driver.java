@@ -10,15 +10,15 @@ public class Driver {
         */
 
         Game game = new Game();
-        System.out.println(game.printBoard()); // print board
+        System.out.println(game.print()); // print board
         game.incrementTurn(); // increment turn
-        System.out.println(game.printBoard()); // print board
+        System.out.println(game.print()); // print board
         //Scanner scanner = new Scanner(System.in);
 
         /*
         boolean gameCont = true;
         while (gameCont) {
-            System.out.println(game.printBoard()); // print board
+            System.out.println(game.print()); // print board
             StringBuilder stringBuilder = new StringBuilder();
             for(String str : game.getMovablePieces()) {
                 int i = 0;
@@ -38,5 +38,10 @@ public class Driver {
             // check win condition (Checkmate or Stalemate) and set 'gameCont' to false
         }
         */
+        // Select a piece: A1
+        // You can't move that piece right now
+        // A2
+        // Move where? (A3, A4):
+
     }
 }

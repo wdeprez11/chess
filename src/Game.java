@@ -1,6 +1,7 @@
 public class Game {
     private Piece[][] board;
     private Piece.Color nextTurn;
+    private boolean turn;
 
     Game() {
         board = new Piece[8][8];
@@ -11,8 +12,10 @@ public class Game {
     void incrementTurn() {
         if (nextTurn.equals(Piece.Color.WHITE)) {
             this.nextTurn = Piece.Color.BLACK;
+            turn = true;
         } else {
             this.nextTurn = Piece.Color.WHITE;
+            turn = false;
         }
     }
 
@@ -71,7 +74,7 @@ public class Game {
      *
      * @return returns string of board for cli-use
      */
-    String printBoard() {
+    String print() {
         return (nextTurn.equals(Piece.Color.WHITE) ? getWhiteBoard() : getBlackBoard()).toString();
     }
 
@@ -79,19 +82,9 @@ public class Game {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
 
-        for (int i = 7, k = 1; i >= 0; i--, k++) {
-            stringBuilder.append(i + 1 + ".\t");
-            for (int j = 0; j < 8; j++) {
-                stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
-            }
-            stringBuilder.append("\n");
-        }
-        stringBuilder.append("\n" + "\t");
-        for (char c = 'A'; c < ((char) (((int) 'A') + 8)); c++) {
-            stringBuilder.append(c + ". ");
-        }
+        appendPieces(stringBuilder);
 
-        stringBuilder.append("\n");
+        appendFileLettering(stringBuilder);
 
         return stringBuilder;
     }
@@ -100,21 +93,47 @@ public class Game {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
 
-        for (int i = 0; i < 8; i++) {
-            stringBuilder.append(i + 1 + ".\t");
-            for (int j = 0; j < 8; j++) {
-                stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+        appendPieces(stringBuilder);
+
+        appendFileLettering(stringBuilder);
+
+        return stringBuilder;
+    }
+
+    private void appendPieces(StringBuilder stringBuilder) {
+        if (stringBuilder.indexOf("WHITE") != -1) {
+            for (int i = 7, k = 1; i >= 0; i--, k++) {
+                stringBuilder.append(i + 1 + ".\t");
+                for (int j = 0; j < 8; j++) {
+                    stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+                }
+                stringBuilder.append("\n");
+            }
+        } else {
+            for (int i = 0; i < 8; i++) {
+                stringBuilder.append(i + 1 + ".\t");
+                for (int j = 0; j < 8; j++) {
+                    stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+                }
+                stringBuilder.append("\n");
+            }
+        }
+    }
+
+    private void appendFileLettering(StringBuilder stringBuilder) {
+        if (stringBuilder.indexOf("WHITE") != -1) {
+            stringBuilder.append("\n" + "\t");
+            for (char c = 'A'; c < ((char) (((int) 'A') + 8)); c++) {
+                stringBuilder.append(c + ". ");
+            }
+            stringBuilder.append("\n");
+        } else {
+            stringBuilder.append("\n" + "\t");
+            for (char c = 'H'; c > ((char) (((int) 'H') - 8)); c--) {
+                stringBuilder.append(c + ". ");
             }
             stringBuilder.append("\n");
         }
-
-        stringBuilder.append("\n" + "\t");
-        for (char c = 'H'; c > ((char) (((int) 'H') - 8)); c--) {
-            stringBuilder.append(c + ". ");
-        }
-        stringBuilder.append("\n");
-
-        return stringBuilder;
     }
 
     public String[] getMovablePieces() {
