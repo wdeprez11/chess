@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Driver {
     public static void main(String[] args) {
         /*
@@ -10,25 +12,25 @@ public class Driver {
         */
 
         Game game = new Game();
-        System.out.println(game.printBoard(game));
-    }
+        System.out.println(game.printBoard()); // print board
+        game.incrementTurn(); // increment turn
+        System.out.println(game.printBoard()); // print board
+        //Scanner scanner = new Scanner(System.in);
 
-    private String printBoard(Game game) {
-        Piece[][] board = game.getBoard();
-        String s = "";
-        s += ("\n\t" + game.getNextTurn() + "\'S TURN\n\n");
-        for (int i = 7, k = 1; i >= 0; i--, k++) {
-            s += (i + 1 + ".\t");
-            for (int j = 0; j < 8; j++) {
-                s += ((board[i][j] == null ? "--" : board[i][j]) + " ");
-            }
-            s += "\n";
+        /*
+        boolean gameCont = true;
+        while (gameCont) {
+            System.out.println(game.printBoard()); // print board
+            // call method from 'game' that can list pieces with available moves
+            // print that method
+            int in = scanner.nextInt(); // read input for the piece
+            // call method from 'game' that can list spaces that 'in' can move to
+            // print that method
+            in = scanner.nextInt(); // read input for the move
+            // call method from 'game' to move that piece
+            game.incrementTurn(); // increment turn
+            // check win condition (Checkmate or Stalemate) and set 'gameCont' to false
         }
-        s += ("\n" + "    ");
-        for (char c = 'A'; c < ((char) (((int) 'A') + 8)); c++) {
-            s += (c + ". ");
-        }
-        s += "\n";
-        return s;
+        */
     }
 }

@@ -55,22 +55,54 @@ public class Game {
 
     }
 
-    public String printBoard(Game game) {
-        Piece[][] board = game.getBoard();
-        String s = "";
-        s += ("\n\t" + game.getNextTurn() + "\'S TURN\n\n");
-        for (int i = 7, k = 1; i >= 0; i--, k++) {
-            s += (i + 1 + ".\t");
-            for (int j = 0; j < 8; j++) {
-                s += ((board[i][j] == null ? "--" : board[i][j]) + " ");
-            }
-            s += "\n";
-        }
-        s += ("\n" + "    ");
-        for (char c = 'A'; c < ((char) (((int) 'A') + 8)); c++) {
-            s += (c + ". ");
-        }
-        s += "\n";
-        return s;
+    /**
+     * Returns a string of the board dependent on the current turn (calls getWhiteBoard() or getBlackBoard())
+     * @return returns string of board for cli-use
+     */
+    public String printBoard() {
+        return new StringBuilder(nextTurn.equals(Piece.Color.WHITE) ? getWhiteBoard() : getBlackBoard()).toString();
     }
+
+    private StringBuilder getWhiteBoard() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
+
+        for (int i = 7, k = 1; i >= 0; i--, k++) {
+            stringBuilder.append(i + 1 + ".\t");
+            for (int j = 0; j < 8; j++) {
+                stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+            }
+            stringBuilder.append("\n");
+        }
+        stringBuilder.append("\n" + "\t");
+        for (char c = 'A'; c < ((char) (((int) 'A') + 8)); c++) {
+            stringBuilder.append(c + ". ");
+        }
+
+        stringBuilder.append("\n");
+
+        return stringBuilder;
+    }
+
+    private StringBuilder getBlackBoard() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
+
+        for (int i = 0; i < 8; i++) {
+            stringBuilder.append(i+1 + ".\t");
+            for(int j = 0; j < 8; j++) {
+                stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+            }
+            stringBuilder.append("\n");
+        }
+
+        stringBuilder.append("\n" + "\t");
+        for (char c = 'H'; c > ((char) (((int) 'H') - 8)); c--) {
+            stringBuilder.append(c + ". ");
+        }
+        stringBuilder.append("\n");
+
+        return stringBuilder;
+    }
+
 }
