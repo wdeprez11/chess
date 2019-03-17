@@ -1,6 +1,5 @@
-import java.awt.*;
 import javax.swing.*;
-import java.util.*;
+import java.awt.*;
 
 public class GUI extends JPanel {
     public void paint(Graphics g) {

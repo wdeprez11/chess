@@ -8,7 +8,12 @@ public class Piece {
             return this.value;
         }
 
-        private Color(String value) {
+        @Override
+        public String toString() {
+            return super.toString();
+        }
+
+        Color(String value) {
             this.value = value;
         }
     }
@@ -22,7 +27,7 @@ public class Piece {
             return this.value;
         }
 
-        private Type(String value) {
+        Type(String value) {
             this.value = value;
         }
     }
@@ -46,6 +51,19 @@ public class Piece {
 
     public void movePiece() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+
+
+        return false;
     }
 
     @Override
