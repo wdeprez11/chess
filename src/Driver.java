@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Driver {
     public static void main(String[] args) {
         /*
@@ -21,8 +19,16 @@ public class Driver {
         boolean gameCont = true;
         while (gameCont) {
             System.out.println(game.printBoard()); // print board
-            // call method from 'game' that can list pieces with available moves
-            // print that method
+            StringBuilder stringBuilder = new StringBuilder();
+            for(String str : game.getMovablePieces()) {
+                int i = 0;
+                stringBuilder.append(str + "\t");
+                if(i % 6 == 0) {
+                    stringBuilder.append("\n");
+                }
+            }
+            System.out.println(stringBuilder.toString());
+            stringBuilder.setLength(0); // can use 'new StringBuilder()' later once I've calculated the size of the board.
             int in = scanner.nextInt(); // read input for the piece
             // call method from 'game' that can list spaces that 'in' can move to
             // print that method

@@ -2,13 +2,13 @@ public class Game {
     private Piece[][] board;
     private Piece.Color nextTurn;
 
-    public Game() {
+    Game() {
         board = new Piece[8][8];
         nextTurn = Piece.Color.WHITE;
         initPieces();
     }
 
-    public void incrementTurn() {
+    void incrementTurn() {
         if (nextTurn.equals(Piece.Color.WHITE)) {
             this.nextTurn = Piece.Color.BLACK;
         } else {
@@ -20,11 +20,14 @@ public class Game {
         return board;
     }
 
-    public String getNextTurn() {
+    private String getNextTurn() {
         return nextTurn.toString();
     }
 
-    public void initPieces() {
+    /**
+     * Initializes board pieces into traditional positions
+     */
+    private void initPieces() {
         {
             board[0][0] = new Piece(Piece.Type.ROOK, Piece.Color.WHITE);
             board[0][1] = new Piece(Piece.Type.KNIGHT, Piece.Color.WHITE);
@@ -51,16 +54,25 @@ public class Game {
         }
     }
 
-    public void startGame() {
-
+    /**
+     * Restarts game by nulling board and reinitializing piece positions
+     */
+    public void restartGame() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                board[i][j] = null;
+            }
+        }
+        initPieces();
     }
 
     /**
      * Returns a string of the board dependent on the current turn (calls getWhiteBoard() or getBlackBoard())
+     *
      * @return returns string of board for cli-use
      */
-    public String printBoard() {
-        return new StringBuilder(nextTurn.equals(Piece.Color.WHITE) ? getWhiteBoard() : getBlackBoard()).toString();
+    String printBoard() {
+        return (nextTurn.equals(Piece.Color.WHITE) ? getWhiteBoard() : getBlackBoard()).toString();
     }
 
     private StringBuilder getWhiteBoard() {
@@ -89,8 +101,8 @@ public class Game {
         stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
 
         for (int i = 0; i < 8; i++) {
-            stringBuilder.append(i+1 + ".\t");
-            for(int j = 0; j < 8; j++) {
+            stringBuilder.append(i + 1 + ".\t");
+            for (int j = 0; j < 8; j++) {
                 stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
             }
             stringBuilder.append("\n");
@@ -103,6 +115,14 @@ public class Game {
         stringBuilder.append("\n");
 
         return stringBuilder;
+    }
+
+    public String[] getMovablePieces() {
+        if (nextTurn.equals(Piece.Color.WHITE)) {
+            return new String[]{"Hello", "World"};
+        } else {
+            return new String[]{"Hello", "World"};
+        }
     }
 
 }
