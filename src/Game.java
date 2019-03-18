@@ -1,30 +1,27 @@
 public class Game {
     private Piece[][] board;
-    private Piece.Color nextTurn;
     private boolean turn;
+    private Piece selectedPiece;
 
+    /**
+     * Initialize game object
+     */
     Game() {
         board = new Piece[8][8];
-        nextTurn = Piece.Color.WHITE;
+        turn = true;
         initPieces();
     }
 
+    /**
+     * If turn attribute is true, then the current turn is WHITE,
+     * If turn attribute is false, then the current turn is BLACK
+     */
     void incrementTurn() {
-        if (nextTurn.equals(Piece.Color.WHITE)) {
-            this.nextTurn = Piece.Color.BLACK;
-            turn = true;
-        } else {
-            this.nextTurn = Piece.Color.WHITE;
-            turn = false;
-        }
-    }
-
-    public Piece[][] getBoard() {
-        return board;
+        turn = !turn;
     }
 
     private String getNextTurn() {
-        return nextTurn.toString();
+        return (turn ? Piece.Color.WHITE : Piece.Color.BLACK).toString();
     }
 
     /**
@@ -61,7 +58,7 @@ public class Game {
      * Restarts game by nulling board and reinitializing piece positions
      */
     public void restartGame() {
-        for (int i = 0; i < board.length; i++) {
+        for (int i = 2; i < 5; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 board[i][j] = null;
             }
@@ -81,9 +78,50 @@ public class Game {
         return stringBuilder.toString();
     }
 
-    void movePiece(String input) {
-        for(int i = 0; i < input.length(); i++) {
+    void movePiece(String str) {
+        inputToBoardAddress(str);
+    }
 
+    void selectPiece(String str) {
+        int[] boardAddress = inputToBoardAddress(str);
+        selectedPiece = board[boardAddress[0]][boardAddress[1]];
+    }
+
+    private int[] inputToBoardAddress(String userInput) {
+        int row = 0, column = 0;
+        for (int i = 0; i < 8; i++) {
+            if (userInput.contains(Integer.toString(i))) {
+                row = i - 1;
+                break;
+            }
+        }
+
+        for (char c = 'A'; c <= 'H'; c++) {
+            if (userInput.indexOf(c) != -1) {
+                column = c - 'A';
+                break;
+            }
+        }
+        return new int[] { row, column };
+    }
+
+    /**
+     * if the selected piece isn't the same color as the current turn or the selected piece has no valid moves
+     * then return false, otherwise return true.
+     * @return returns piece move status
+     */
+    boolean canSelectedMove() {
+        return false;
+    }
+
+    /**
+     * @return returns selectedPiece class attribute
+     */
+    String getSelectedPiece() {
+        try {
+            return selectedPiece.getType().toString();
+        } catch (NullPointerException e) {
+            return e.toString();
         }
     }
 
@@ -123,13 +161,4 @@ public class Game {
             stringBuilder.append("\n");
         }
     }
-
-    public String[] getMovablePieces() {
-        if (nextTurn.equals(Piece.Color.WHITE)) {
-            return new String[]{"Hello", "World"};
-        } else {
-            return new String[]{"Hello", "World"};
-        }
-    }
-
 }
