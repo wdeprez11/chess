@@ -27,6 +27,11 @@ public class Piece {
             return this.value;
         }
 
+        @Override
+        public String toString() {
+            return super.toString();
+        }
+
         Type(String value) {
             this.value = value;
         }
