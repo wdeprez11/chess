@@ -44,7 +44,7 @@ public class Piece {
 
     private Color color;
 
-    public Piece(Type type, Color color) {
+    Piece(Type type, Color color) {
         this.type = type;
         this.color = color;
     }
@@ -61,9 +61,8 @@ public class Piece {
         if (o == null) {
             return false;
         }
-
-
-        return false;
+        Piece temp = (Piece) o;
+        return (this.type == temp.type && this.color == temp.color);
     }
 
     @Override

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Driver {
     public static void main(String[] args) {
         /*
@@ -12,6 +14,8 @@ public class Driver {
         Game game = new Game();
         System.out.println(game.print()); // print board
         game.incrementTurn(); // increment turn
+        Scanner scanner = new Scanner(System.in);
+        game.movePiece(scanner.nextLine());
         System.out.println(game.print()); // print board
         //Scanner scanner = new Scanner(System.in);
 

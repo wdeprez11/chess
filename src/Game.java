@@ -75,33 +75,21 @@ public class Game {
      * @return returns string of board for cli-use
      */
     String print() {
-        return (nextTurn.equals(Piece.Color.WHITE) ? getWhiteBoard() : getBlackBoard()).toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        appendPieces(stringBuilder);
+        appendFileLettering(stringBuilder);
+        return stringBuilder.toString();
     }
 
-    private StringBuilder getWhiteBoard() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
+    void movePiece(String input) {
+        for(int i = 0; i < input.length(); i++) {
 
-        appendPieces(stringBuilder);
-
-        appendFileLettering(stringBuilder);
-
-        return stringBuilder;
-    }
-
-    private StringBuilder getBlackBoard() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
-
-        appendPieces(stringBuilder);
-
-        appendFileLettering(stringBuilder);
-
-        return stringBuilder;
+        }
     }
 
     private void appendPieces(StringBuilder stringBuilder) {
-        if (stringBuilder.indexOf("WHITE") != -1) {
+        stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
+        if (turn) {
             for (int i = 7, k = 1; i >= 0; i--, k++) {
                 stringBuilder.append(i + 1 + ".\t");
                 for (int j = 0; j < 8; j++) {
@@ -121,7 +109,7 @@ public class Game {
     }
 
     private void appendFileLettering(StringBuilder stringBuilder) {
-        if (stringBuilder.indexOf("WHITE") != -1) {
+        if (turn) {
             stringBuilder.append("\n" + "\t");
             for (char c = 'A'; c < ((char) (((int) 'A') + 8)); c++) {
                 stringBuilder.append(c + ". ");
