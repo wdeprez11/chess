@@ -1,7 +1,8 @@
-public class Game {
+class Game {
     private Piece[][] board;
     private boolean turn;
     private Piece selectedPiece;
+    private int stalemateCount;
 
     /**
      * Initialize game object
@@ -9,6 +10,7 @@ public class Game {
     Game() {
         board = new Piece[8][8];
         turn = true;
+        stalemateCount = 0;
         initPieces();
     }
 
@@ -57,7 +59,7 @@ public class Game {
     /**
      * Restarts game by nulling board and reinitializing piece positions
      */
-    public void restartGame() {
+    void restartGame() {
         for (int i = 2; i < 5; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 board[i][j] = null;
@@ -102,16 +104,25 @@ public class Game {
                 break;
             }
         }
-        return new int[] { row, column };
+        return new int[]{row, column};
     }
 
     /**
      * if the selected piece isn't the same color as the current turn or the selected piece has no valid moves
      * then return false, otherwise return true.
+     *
      * @return returns piece move status
      */
     boolean canSelectedMove() {
-        return false;
+        boolean b;
+        Piece.Color selectedColor = selectedPiece.getColor();
+        b = (turn ? selectedColor.equals(Piece.Color.BLACK) : selectedColor.equals(Piece.Color.WHITE));
+
+        /*
+        Check for valid moves here
+         */
+
+        return b;
     }
 
     /**
@@ -160,5 +171,16 @@ public class Game {
             }
             stringBuilder.append("\n");
         }
+    }
+
+    /**
+     * Returns status of game, is stalemate, checkmate, or draw
+     * Stalemate = King is last piece and cannot move into any piece without losing the piece
+     * Draw = 15 moves where no piece has been taken and no pawn has been moved
+     * Checkmate = King cannot move because he is trapped by enemy pieces
+     * @return returns status of game
+     */
+    boolean getStatus() {
+        return false;
     }
 }

@@ -25,7 +25,7 @@ public class Driver {
                     startCliGameLoop();
                 } else {
                     System.out.println("Invalid, retrying...");
-                    startGame();
+                    startGame(); // java.util.NoSuchElementException
                 }
                 break;
             case 'N':
