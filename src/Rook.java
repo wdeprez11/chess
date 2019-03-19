@@ -1,21 +1,23 @@
 public class Rook implements Pieces {
-    private Color color;
+    private Team team;
 
-    Rook(Color color) {
-        this.color = color;
+    Rook(Team team) {
+        this.team = team;
     }
+
+
 
     @Override
-    public void movePiece() {
+    public void getMoves() {
 
     }
 
-    public Color getColor() {
-        return color;
+    public Team getTeam() {
+        return team;
     }
 
     public char firstCharColor() {
-        return getColor().toString().charAt(0);
+        return getTeam().toString().charAt(0);
     }
 
     public char firstCharType() {
@@ -34,7 +36,7 @@ public class Rook implements Pieces {
     }
 
     @Override
-    public Object clone() {
-        return null;
+    public Pieces clone() {
+        return this;
     }
 }

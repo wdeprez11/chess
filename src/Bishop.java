@@ -1,21 +1,21 @@
 public class Bishop implements Pieces {
-    private Color color;
+    private Team team;
 
-    Bishop(Color color) {
-        this.color = color;
+    Bishop(Team team) {
+        this.team = team;
     }
 
     @Override
-    public void movePiece() {
+    public void getMoves() {
 
     }
 
-    public Color getColor() {
-        return color;
+    public Team getTeam() {
+        return team;
     }
 
     public char firstCharColor() {
-        return getColor().toString().charAt(0);
+        return getTeam().toString().charAt(0);
     }
 
     public char firstCharType() {
@@ -34,7 +34,7 @@ public class Bishop implements Pieces {
     }
 
     @Override
-    public Object clone() {
-        return null;
+    public Pieces clone() {
+        return this;
     }
 }

@@ -1,4 +1,4 @@
-public enum Color {
+public enum Team {
     BLACK("B"), WHITE("W");
 
     private String value;
@@ -12,7 +12,7 @@ public enum Color {
         return super.toString();
     }
 
-    Color(String value) {
+    Team(String value) {
         this.value = value;
     }
 }

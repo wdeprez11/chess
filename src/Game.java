@@ -35,55 +35,29 @@ class Game {
      */
     private void initPieces() {
         {
-            board[0][0] = new Rook(Color.WHITE);
-            board[0][1] = new Knight(Color.WHITE);
-            board[0][2] = new Bishop(Color.WHITE);
-            board[0][3] = new Queen(Color.WHITE);
-            board[0][4] = new King(Color.WHITE);
-            board[0][5] = new Bishop(Color.WHITE);
-            board[0][6] = new Knight(Color.WHITE);
-            board[0][7] = new Rook(Color.WHITE);
+            board[0][0] = new Rook(Team.WHITE);
+            board[0][1] = new Knight(Team.WHITE);
+            board[0][2] = new Bishop(Team.WHITE);
+            board[0][3] = new Queen(Team.WHITE);
+            board[0][4] = new King(Team.WHITE);
+            board[0][5] = new Bishop(Team.WHITE);
+            board[0][6] = new Knight(Team.WHITE);
+            board[0][7] = new Rook(Team.WHITE);
         }
         {
-            board[7][0] = new Rook(Color.BLACK);
-            board[7][1] = new Knight(Color.BLACK);
-            board[7][2] = new Bishop(Color.BLACK);
-            board[7][3] = new Queen(Color.BLACK);
-            board[7][4] = new King(Color.BLACK);
-            board[7][5] = new Bishop(Color.BLACK);
-            board[7][6] = new Knight(Color.BLACK);
-            board[7][7] = new Rook(Color.BLACK);
+            board[7][0] = new Rook(Team.BLACK);
+            board[7][1] = new Knight(Team.BLACK);
+            board[7][2] = new Bishop(Team.BLACK);
+            board[7][3] = new Queen(Team.BLACK);
+            board[7][4] = new King(Team.BLACK);
+            board[7][5] = new Bishop(Team.BLACK);
+            board[7][6] = new Knight(Team.BLACK);
+            board[7][7] = new Rook(Team.BLACK);
         }
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(Color.WHITE);
-            board[6][i] = new Pawn(Color.BLACK);
+            board[1][i] = new Pawn(Team.WHITE);
+            board[6][i] = new Pawn(Team.BLACK);
         }
-        /*
-        {
-            board[0][0] = new Piece(Piece.Type.ROOK, Piece.Color.WHITE);
-            board[0][1] = new Piece(Piece.Type.KNIGHT, Piece.Color.WHITE);
-            board[0][2] = new Piece(Piece.Type.BISHOP, Piece.Color.WHITE);
-            board[0][3] = new Piece(Piece.Type.QUEEN, Piece.Color.WHITE);
-            board[0][4] = new Piece(Piece.Type.KING, Piece.Color.WHITE);
-            board[0][5] = new Piece(Piece.Type.BISHOP, Piece.Color.WHITE);
-            board[0][6] = new Piece(Piece.Type.KNIGHT, Piece.Color.WHITE);
-            board[0][7] = new Piece(Piece.Type.ROOK, Piece.Color.WHITE);
-        }
-        {
-            board[7][0] = new Piece(Piece.Type.ROOK, Piece.Color.BLACK);
-            board[7][1] = new Piece(Piece.Type.KNIGHT, Piece.Color.BLACK);
-            board[7][2] = new Piece(Piece.Type.BISHOP, Piece.Color.BLACK);
-            board[7][3] = new Piece(Piece.Type.QUEEN, Piece.Color.BLACK);
-            board[7][4] = new Piece(Piece.Type.KING, Piece.Color.BLACK);
-            board[7][5] = new Piece(Piece.Type.BISHOP, Piece.Color.BLACK);
-            board[7][6] = new Piece(Piece.Type.KNIGHT, Piece.Color.BLACK);
-            board[7][7] = new Piece(Piece.Type.ROOK, Piece.Color.BLACK);
-        }
-        for (int i = 0; i < 8; i++) {
-            board[1][i] = new Piece(Piece.Type.PAWN, Piece.Color.WHITE);
-            board[6][i] = new Piece(Piece.Type.PAWN, Piece.Color.BLACK);
-        }
-        */
     }
 
     /**
@@ -147,13 +121,13 @@ class Game {
      */
     boolean canSelectedMove() {
         boolean b;
-        Color selectedColor = selectedPiece.getColor();
-        //Piece.Color selectedColor = selectedPiece.getColor();
-        b = (turn ? selectedColor.equals(Piece.Color.BLACK) : selectedColor.equals(Piece.Color.WHITE));
+        Team selectedTeam = selectedPiece.getTeam();
+        //Piece.Team selectedTeam = selectedPiece.getTeam();
+        b = (turn ? selectedTeam.equals(Team.WHITE) : selectedTeam.equals(Team.BLACK));
 
-        /*
-        Check for valid moves here
-         */
+        if(b) {
+            // Check for valid moves here
+        }
 
         return b;
     }

@@ -1,8 +1,8 @@
 public interface Pieces {
 
-    void movePiece();
+    void getMoves();
 
-    Color getColor();
+    Team getTeam();
 
     String toString();
 
@@ -10,5 +10,5 @@ public interface Pieces {
 
     char firstCharType();
 
-    // Object clone();
+    Pieces clone();
 }

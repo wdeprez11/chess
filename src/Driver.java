@@ -6,8 +6,12 @@ public class Driver {
     private static int i = 0;
 
     public static void main(String[] args) {
+        System.out.println(game.print());
+        select();
+        game.incrementTurn();
+
         // startGame();
-        startCliGameLoop();
+        //startCliGameLoop();
     }
 
     private static void startGame() {
@@ -73,7 +77,7 @@ public class Driver {
             System.out.println(game.print());
             select();
             game.incrementTurn();
-            game.restartGame();
+            // game.restartGame();
             g = game.getStatus();
         }
     }
