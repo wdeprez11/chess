@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private static Game game = new Game();
@@ -19,9 +18,9 @@ public class Driver {
                 System.out.print("Ok... gui or cli? ");
                 String s = scanner.nextLine();
                 scanner.close();
-                if(s.equalsIgnoreCase("gui") || s.contains("gui")) {
+                if (s.equalsIgnoreCase("gui") || s.contains("gui")) {
                     startGuiGameLoop();
-                } else if(s.equalsIgnoreCase("cli") || s.contains("cli")) {
+                } else if (s.equalsIgnoreCase("cli") || s.contains("cli")) {
                     startCliGameLoop();
                 } else {
                     System.out.println("Invalid, retrying...");
