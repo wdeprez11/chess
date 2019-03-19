@@ -49,7 +49,8 @@ public class Driver {
         String str = "Enter address of piece you want to move";
         System.out.print((i == 0) ? str + " (Ex: E1, a1, g 2): " : str + ": ");
         i++;
-        game.selectPiece(scanner.nextLine());
+        String input = scanner.nextLine();
+        game.selectPiece(input);
         if (game.getSelectedPiece().equals("java.lang.NullPointerException")) {
             System.out.println("Invalid space, select again");
             select();
@@ -57,7 +58,7 @@ public class Driver {
             System.out.println("You can't move that piece, select again");
             select();
         } else {
-            System.out.print("Move " + game.getSelectedPiece().toLowerCase() + " where?: ");
+            System.out.print("Move " + game.getNextTurn().toLowerCase() + " " + game.getSelectedPiece().toLowerCase() + " at " + input.toUpperCase().replaceAll("\\s", "") + " to where? ");
             game.movePiece(scanner.nextLine());
         }
     }
