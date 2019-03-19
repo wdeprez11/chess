@@ -1,14 +1,16 @@
 class Game {
-    private Piece[][] board;
+    //private Piece[][] board;
+    private Pieces[][] board;
     private boolean turn;
-    private Piece selectedPiece;
+    //private Piece selectedPiece;
+    private Pieces selectedPiece;
     private int stalemateCount;
 
     /**
      * Initialize game object
      */
     Game() {
-        board = new Piece[8][8];
+        board = new Pieces[8][8];
         turn = true;
         stalemateCount = 0;
         initPieces();
@@ -30,6 +32,31 @@ class Game {
      * Initializes board pieces into traditional positions
      */
     private void initPieces() {
+        {
+            board[0][0] = new Rook();
+            board[0][1] = new Knight();
+            board[0][2] = new Bishop();
+            board[0][3] = new Queen();
+            board[0][4] = new King();
+            board[0][5] = new Bishop();
+            board[0][6] = new Knight();
+            board[0][7] = new Rook();
+        }
+        {
+            board[7][0] = new Rook();
+            board[7][1] = new Knight();
+            board[7][2] = new Bishop();
+            board[7][3] = new Queen();
+            board[7][4] = new King();
+            board[7][5] = new Bishop();
+            board[7][6] = new Knight();
+            board[7][7] = new Rook();
+        }
+        for (int i = 0; i < 8; i++) {
+            board[1][i] = new Pawn();
+            board[6][i] = new Pawn();
+        }
+        /*
         {
             board[0][0] = new Piece(Piece.Type.ROOK, Piece.Color.WHITE);
             board[0][1] = new Piece(Piece.Type.KNIGHT, Piece.Color.WHITE);
@@ -54,6 +81,7 @@ class Game {
             board[1][i] = new Piece(Piece.Type.PAWN, Piece.Color.WHITE);
             board[6][i] = new Piece(Piece.Type.PAWN, Piece.Color.BLACK);
         }
+        */
     }
 
     /**
@@ -132,7 +160,7 @@ class Game {
         try {
             return selectedPiece.getType().toString();
         } catch (NullPointerException e) {
-            return e.toString();
+            return e;
         }
     }
 
@@ -178,6 +206,7 @@ class Game {
      * Stalemate = King is last piece and cannot move into any piece without losing the piece
      * Draw = 15 moves where no piece has been taken and no pawn has been moved
      * Checkmate = King cannot move because he is trapped by enemy pieces
+     *
      * @return returns status of game
      */
     boolean getStatus() {
