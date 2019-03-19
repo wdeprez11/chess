@@ -26,7 +26,7 @@ class Game {
         turn = !turn;
     }
 
-    private String getNextTurn() {
+    public String getNextTurn() {
         return (turn ? Piece.Color.WHITE : Piece.Color.BLACK).toString();
     }
 
