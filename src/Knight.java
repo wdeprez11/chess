@@ -14,9 +14,27 @@ public class Knight implements Pieces {
         return color;
     }
 
+    public char firstCharColor() {
+        return getColor().toString().charAt(0);
+    }
+
+    public char firstCharType() {
+        return 'H';
+    }
+
     @Override
     public String toString() {
         return "Knight";
         //return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public Object clone() {
+        return null;
     }
 }

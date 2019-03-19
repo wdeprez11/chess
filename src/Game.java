@@ -4,6 +4,7 @@ class Game {
     private boolean turn;
     //private Piece selectedPiece;
     private Pieces selectedPiece;
+    private int[] selectedAddress;
     private int stalemateCount;
 
     /**
@@ -11,6 +12,7 @@ class Game {
      */
     Game() {
         board = new Pieces[8][8];
+        selectedAddress = new int[2];
         turn = true;
         stalemateCount = 0;
         initPieces();
@@ -109,12 +111,14 @@ class Game {
     }
 
     void movePiece(String str) {
-        inputToBoardAddress(str);
+        int[] newAddress = inputToBoardAddress(str);
+        board[newAddress[0]][newAddress[1]] = board[selectedAddress[0]][selectedAddress[1]].clone();
+        board[selectedAddress[0]][selectedAddress[1]] = null;
     }
 
     void selectPiece(String str) {
-        int[] boardAddress = inputToBoardAddress(str);
-        selectedPiece = board[boardAddress[0]][boardAddress[1]];
+        selectedAddress = inputToBoardAddress(str);
+        selectedPiece = board[selectedAddress[0]][selectedAddress[1]];
     }
 
     private int[] inputToBoardAddress(String userInput) {
@@ -171,7 +175,7 @@ class Game {
             for (int i = 7, k = 1; i >= 0; i--, k++) {
                 stringBuilder.append(i + 1 + ".\t");
                 for (int j = 0; j < 8; j++) {
-                    stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+                    stringBuilder.append((board[i][j] == null ? "--" : new String(new char[] { board[i][j].firstCharColor(), board[i][j].firstCharType() })) + " ");
                 }
                 stringBuilder.append("\n");
             }
@@ -179,7 +183,7 @@ class Game {
             for (int i = 0; i < 8; i++) {
                 stringBuilder.append(i + 1 + ".\t");
                 for (int j = 0; j < 8; j++) {
-                    stringBuilder.append((board[i][j] == null ? "--" : board[i][j]) + " ");
+                    stringBuilder.append((board[i][j] == null ? "--" : new String(new char[] { board[i][j].firstCharColor(), board[i][j].firstCharType() })) + " ");
                 }
                 stringBuilder.append("\n");
             }

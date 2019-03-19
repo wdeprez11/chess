@@ -6,8 +6,8 @@ public class Driver {
     private static int i = 0;
 
     public static void main(String[] args) {
-        startGame();
-        // startCliGameLoop();
+        // startGame();
+        startCliGameLoop();
     }
 
     private static void startGame() {

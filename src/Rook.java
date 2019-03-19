@@ -14,9 +14,27 @@ public class Rook implements Pieces {
         return color;
     }
 
+    public char firstCharColor() {
+        return getColor().toString().charAt(0);
+    }
+
+    public char firstCharType() {
+        return toString().charAt(0);
+    }
+
     @Override
     public String toString() {
         return "Rook";
         //return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public Object clone() {
+        return null;
     }
 }
