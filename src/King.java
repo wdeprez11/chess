@@ -7,7 +7,20 @@ public class King implements Pieces {
 
     @Override
     public int[] getMoves() {
-        //
+        /*
+        Operations
+        rank + 1 && file + 1,
+        rank + 1,
+        rank + 1 && file - 1,
+        file + 1,
+        file - 1,
+        rank - 1 && file + 1,
+        rank - 1,
+        rank - 1 && file - 1,
+
+        Cannot move onto space that allows enemy piece to capture him
+        Can capture any direction he moves
+         */
         return new int[] {0};
     }
 

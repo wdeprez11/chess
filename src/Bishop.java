@@ -7,6 +7,16 @@ public class Bishop implements Pieces {
 
     @Override
     public int[] getMoves() {
+        /*
+        rank + n && file + n,
+        rank + n && file - n,
+        rank - n && file + n,
+        rank - n && file - n,
+
+        Captures on finishing position
+
+        Cannot move in which it would jeopardize the king
+         */
 
         return new int[] {0};
     }

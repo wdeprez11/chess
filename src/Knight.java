@@ -7,6 +7,13 @@ public class Knight implements Pieces {
 
     @Override
     public int[] getMoves() {
+        /*
+
+
+        Captures on piece finishing position
+
+        Cannot move in which it would jeopardize the king
+         */
 
         return new int[] {0};
     }
