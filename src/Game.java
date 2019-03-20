@@ -5,6 +5,7 @@ class Game {
     //private Piece selectedPiece;
     private Pieces selectedPiece;
     private int[] selectedAddress;
+    private int[][] selectedPossibleMoves;
     private int stalemateCount;
 
     /**
@@ -96,6 +97,30 @@ class Game {
     }
 
     /**
+     * @param selectedAddress
+     * @return
+     */
+    private int[][] populatePossibleMoves(int[] selectedAddress) {
+        // int[][] possibleMoves = new int[26][2];
+        // for(int i = 0; i < selectedPiece.getMoves().length; i++) {
+        //    possibleMoves[i] = new int[] {0, 0};
+        // }
+        // ArrayList<ArrayList<Integer>> possibleMoves = new ArrayList();
+        // king has max of 8 moves,
+        // knight has max of 8 moves,
+        // pawn has maximum of 4 moves,
+        // bishop has maximum of 13 moves
+        // rook has maximum of 14 moves,
+        // queen has maximum of 26 moves,
+        // return possibleMoves.stream().map(u -> u.stream().mapToInt(i -> i).toArray()).toArray(int[][]::new); // Lambda, need to research
+        return new int[][]{{0}, {0}};
+    }
+
+    private boolean isValidMove(int[] whereToMove) {
+        return false;
+    }
+
+    /**
      * Converts input to board address(array address), then sets global variable to that selected address and
      * sets selectedPiece to the memory of that address in the board array
      *
@@ -103,6 +128,7 @@ class Game {
      */
     void selectPiece(String str) {
         selectedAddress = inputToBoardAddress(str);
+        selectedPossibleMoves = populatePossibleMoves(selectedAddress);
         selectedPiece = board[selectedAddress[0]][selectedAddress[1]];
     }
 
