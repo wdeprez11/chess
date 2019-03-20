@@ -7,8 +7,13 @@ public class Driver {
 
     public static void main(String[] args) {
         System.out.println(game.print());
-        select();
+        game.selectPiece("A2");
+        game.movePiece("A3");
         game.incrementTurn();
+        System.out.println(game.print());
+
+        //select();
+        //game.incrementTurn();
 
         // startGame();
         //startCliGameLoop();
@@ -22,9 +27,9 @@ public class Driver {
                 System.out.print("Ok... gui or cli? ");
                 String s = scanner.nextLine();
                 scanner.close();
-                if (s.equalsIgnoreCase("gui") || s.contains("gui")) {
+                if (s.contains("gui") || s.equalsIgnoreCase("gui")) {
                     startGuiGameLoop();
-                } else if (s.equalsIgnoreCase("cli") || s.contains("cli")) {
+                } else if (s.contains("cli") || s.equalsIgnoreCase("cli")) {
                     startCliGameLoop();
                 } else {
                     System.out.println("Invalid, retrying...");
