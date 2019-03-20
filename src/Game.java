@@ -84,17 +84,32 @@ class Game {
         return stringBuilder.toString();
     }
 
+    /**
+     * Converts input to board address(array address), then copies old address to new space and sets old address to null
+     *
+     * @param str string passed over to inputToBoardAddress(String str)
+     */
     void movePiece(String str) {
         int[] newAddress = inputToBoardAddress(str);
         board[newAddress[0]][newAddress[1]] = board[selectedAddress[0]][selectedAddress[1]].clone();
         board[selectedAddress[0]][selectedAddress[1]] = null;
     }
 
+    /**
+     * Converts input to board address(array address), then sets global variable to that selected address and
+     * sets selectedPiece to the memory of that address in the board array
+     *
+     * @param str string passed over to inputToBoardAddress(String str)
+     */
     void selectPiece(String str) {
         selectedAddress = inputToBoardAddress(str);
         selectedPiece = board[selectedAddress[0]][selectedAddress[1]];
     }
 
+    /**
+     * @param userInput user input, passed through scanner
+     * @return returns array holding board address
+     */
     private int[] inputToBoardAddress(String userInput) {
         int row = 0, column = 0;
         for (int i = 0; i < 8; i++) {
@@ -114,22 +129,12 @@ class Game {
     }
 
     /**
-     * if the selected piece isn't the same color as the current turn or the selected piece has no valid moves
-     * then return false, otherwise return true.
+     * if selectedPiece is your team and amount of moves for selectedPiece is greater than 0 then return true, otherwise false
      *
-     * @return returns piece move status
+     * @return returns piece's move status
      */
     boolean canSelectedMove() {
-        boolean b;
-        Team selectedTeam = selectedPiece.getTeam();
-        //Piece.Team selectedTeam = selectedPiece.getTeam();
-        b = (turn ? selectedTeam.equals(Team.WHITE) : selectedTeam.equals(Team.BLACK));
-
-        if(b) {
-            // Check for valid moves here
-        }
-
-        return b;
+        return (turn ? selectedPiece.getTeam().equals(Team.WHITE) : selectedPiece.getTeam().equals(Team.BLACK) && selectedPiece.getMoves().length > 0);
     }
 
     /**
@@ -143,13 +148,18 @@ class Game {
         }
     }
 
+    /**
+     * Appends rank numbers and the pieces / empty spaces to input StringBuilder object
+     *
+     * @param stringBuilder pass StringBuilder object to avoid redundancy and recreation
+     */
     private void appendPieces(StringBuilder stringBuilder) {
         stringBuilder.append("\n\t" + getNextTurn() + "\'S TURN\n\n");
         if (turn) {
             for (int i = 7, k = 1; i >= 0; i--, k++) {
                 stringBuilder.append(i + 1 + ".\t");
                 for (int j = 0; j < 8; j++) {
-                    stringBuilder.append((board[i][j] == null ? "--" : new String(new char[] { board[i][j].firstCharColor(), board[i][j].firstCharType() })) + " ");
+                    stringBuilder.append((board[i][j] == null ? "--" : new String(new char[]{board[i][j].firstCharColor(), board[i][j].firstCharType()})) + " ");
                 }
                 stringBuilder.append("\n");
             }
@@ -157,13 +167,18 @@ class Game {
             for (int i = 0; i < 8; i++) {
                 stringBuilder.append(i + 1 + ".\t");
                 for (int j = 0; j < 8; j++) {
-                    stringBuilder.append((board[i][j] == null ? "--" : new String(new char[] { board[i][j].firstCharColor(), board[i][j].firstCharType() })) + " ");
+                    stringBuilder.append((board[i][j] == null ? "--" : new String(new char[]{board[i][j].firstCharColor(), board[i][j].firstCharType()})) + " ");
                 }
                 stringBuilder.append("\n");
             }
         }
     }
 
+    /**
+     * Appends lettering for files to the end of the StringBuilder object passed
+     *
+     * @param stringBuilder pass StringBuilder object to avoid redundancy and recreation
+     */
     private void appendFileLettering(StringBuilder stringBuilder) {
         if (turn) {
             stringBuilder.append("\n" + "\t");
