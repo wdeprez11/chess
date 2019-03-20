@@ -6,8 +6,9 @@ public class Bishop implements Pieces {
     }
 
     @Override
-    public void getMoves() {
+    public int[] getMoves() {
 
+        return new int[] {0};
     }
 
     public Team getTeam() {

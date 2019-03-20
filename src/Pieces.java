@@ -1,6 +1,6 @@
 public interface Pieces {
 
-    void getMoves();
+    int[] getMoves();
 
     Team getTeam();
 
