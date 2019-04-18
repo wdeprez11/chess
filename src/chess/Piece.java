@@ -1,5 +1,5 @@
 package chess;
 
-public interface Piece {
-
+class Piece {
+    String colour;
 }
